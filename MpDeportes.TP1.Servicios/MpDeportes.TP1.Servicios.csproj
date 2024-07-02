@@ -1,0 +1,14 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net8.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\MpDeportes.TP1.Datos\MpDeportes.TP1.Datos.csproj" />
+    <ProjectReference Include="..\MpDeportes.TP1.Entidades\MpDeportes.TP1.Entidades.csproj" />
+  </ItemGroup>
+
+</Project>

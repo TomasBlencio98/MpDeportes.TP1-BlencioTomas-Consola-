@@ -1,0 +1,26 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <TargetFramework>net8.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="ConsoleTables" Version="2.6.1" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="8.0.5">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\MpDeportes.TP1.Datos\MpDeportes.TP1.Datos.csproj" />
+    <ProjectReference Include="..\MpDeportes.TP1.Entidades\MpDeportes.TP1.Entidades.csproj" />
+    <ProjectReference Include="..\MpDeportes.TP1.Ioc\MpDeportes.TP1.Ioc.csproj" />
+    <ProjectReference Include="..\MpDeportes.TP1.Servicios\MpDeportes.TP1.Servicios.csproj" />
+    <ProjectReference Include="..\MpDeportes.TP1.Shared\MpDeportes.TP1.Shared.csproj" />
+  </ItemGroup>
+
+</Project>
