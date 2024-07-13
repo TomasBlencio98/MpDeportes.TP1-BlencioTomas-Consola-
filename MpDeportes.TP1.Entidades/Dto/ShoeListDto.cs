@@ -19,5 +19,6 @@ namespace MpDeportes.TP1.Entidades.Dto
         public string Model { get; set; } = null!;
         public string Description { get; set; } = null!;
         public decimal Price { get; set; }
+        public int Cantidad { get; set; } = 0!;
     }
 }

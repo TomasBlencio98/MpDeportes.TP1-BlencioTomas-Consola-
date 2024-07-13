@@ -7,6 +7,7 @@ using System.Numerics;
 using System.Text;
 using System.Threading.Tasks;
 using Color = MpDeportes.TP1.Entidades.Color;
+using Size = MpDeportes.TP1.Entidades.Size;
 
 namespace MpDeportes.TP1.Windows.Helpers
 {
@@ -45,12 +46,16 @@ namespace MpDeportes.TP1.Windows.Helpers
                 case Sport sport:
                     r.Cells[0].Value = sport.SportName;
                     break;
+                case Size size:
+                    r.Cells[0].Value = size.SizeNumber;
+                    break;
                 case ShoeListDto shoeDto:
                     r.Cells[0].Value = shoeDto.Brand;
                     r.Cells[1].Value = shoeDto.Genre;
                     r.Cells[2].Value = shoeDto.Color;
                     r.Cells[3].Value = shoeDto.Sport;
                     r.Cells[4].Value = shoeDto.Price.ToString("C");
+                    r.Cells[5].Value = shoeDto.Cantidad;
                     break;
                 default:
                     break;

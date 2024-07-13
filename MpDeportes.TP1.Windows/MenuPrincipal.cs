@@ -4,6 +4,7 @@ using MpDeportes.TP1.Windows.Brands;
 using MpDeportes.TP1.Windows.Colors;
 using MpDeportes.TP1.Windows.Genres;
 using MpDeportes.TP1.Windows.Shoes;
+using MpDeportes.TP1.Windows.Sizes;
 using MpDeportes.TP1.Windows.Sports;
 
 namespace MpDeportes.TP1.Windows
@@ -93,6 +94,22 @@ namespace MpDeportes.TP1.Windows
                 return;
             }
             FrmShoes frm = new FrmShoes(servicioShoes, _serviceProvider);
+            frm.ShowDialog();
+        }
+
+        private void ButtonSizes_Click(object sender, EventArgs e)
+        {
+            var servicioSizes = _serviceProvider
+               .GetService<IServicioSize>();
+            var servicioShoe = _serviceProvider
+                .GetService<IServicioShoe>();
+            if (servicioSizes == null || servicioShoe == null)
+            {
+                MessageBox.Show("El servicio no está registrado o no se pudo resolver."
+                    , "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+            FrmSizes frm = new FrmSizes(servicioSizes, servicioShoe);
             frm.ShowDialog();
         }
     }

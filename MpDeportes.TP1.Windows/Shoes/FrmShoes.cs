@@ -195,7 +195,7 @@ namespace MpDeportes.TP1.Windows.Shoes
             if (dgvDatos.SelectedRows.Count == 0) { return; }
             var r = dgvDatos.SelectedRows[0];
             ShoeListDto? shoeDto = r.Tag as ShoeListDto;
-            if(shoeDto == null) return;
+            if (shoeDto == null) return;
             Shoe? shoe = _servicio.GetShoePorId(shoeDto.ShoeId);
             FrmShoesAE frm = new FrmShoesAE(_serviceProvider)
             { Text = "Editar Shoe" };
@@ -204,7 +204,7 @@ namespace MpDeportes.TP1.Windows.Shoes
             try
             {
                 shoe = frm.GetShoe();
-                if(shoe == null) return;
+                if (shoe == null) return;
                 if (!_servicio.Existe(shoe))
                 {
                     _servicio.Guardar(shoe);
@@ -227,6 +227,71 @@ namespace MpDeportes.TP1.Windows.Shoes
                         MessageBoxButtons.OK, MessageBoxIcon.Error);
 
             }
+        }
+
+        private void aZToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            DesactivarButtons();
+            MostrarOrdenado(Orden.AZ);
+        }
+
+        private void DesactivarButtons()
+        {
+            ToolButtonNuevo.Enabled = false;
+            TsButtonBorrar.Enabled = false;
+            TsButtonEditar.Enabled = false;
+            TsButtonFiltrar.Enabled = false;
+            ComboBoxPaginas.Enabled = true;
+            TextBoxCantRegistros.Enabled = false;
+            ButtonPrimero.Enabled = false;
+            ButtonAnterior.Enabled = false;
+            ButtonSiguiente.Enabled = false;
+            ButtonUltimo.Enabled = false;
+        }
+
+        private void zAToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            DesactivarButtons();
+            MostrarOrdenado(Orden.ZA);
+        }
+
+        private void menorAMayorToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            DesactivarButtons();
+            MostrarOrdenado(Orden.MenorPrecio);
+        }
+
+        private void MostrarOrdenado(Orden orden)
+        {
+            var listaSHOE = _servicio.GetListaOrdenadaFiltradaEntreRangoPrecios(orden, null, null, null, null, null, null);
+            lista = _servicio.PasarListaDto(listaSHOE);
+            MostrarDatosEnGrilla();
+        }
+
+        private void mayorAMenorToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            DesactivarButtons();
+            MostrarOrdenado(Orden.MayorPrecio);
+        }
+
+        private void TsButtonActualizar_Click(object sender, EventArgs e)
+        {
+            ActivarButtons();
+            RecargarGrilla();
+        }
+
+        private void ActivarButtons()
+        {
+            ToolButtonNuevo.Enabled = true;
+            TsButtonBorrar.Enabled = true;
+            TsButtonEditar.Enabled = true;
+            TsButtonFiltrar.Enabled = true;
+            ComboBoxPaginas.Enabled = true;
+            TextBoxCantRegistros.Enabled = true;
+            ButtonPrimero.Enabled = true;
+            ButtonAnterior.Enabled = true;
+            ButtonSiguiente.Enabled = true;
+            ButtonUltimo.Enabled = true;
         }
     }
 }

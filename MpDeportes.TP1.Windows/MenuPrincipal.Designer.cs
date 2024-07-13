@@ -34,6 +34,7 @@
             ButtonShoes = new Button();
             ButtonSports = new Button();
             ButtonColors = new Button();
+            ButtonSizes = new Button();
             SuspendLayout();
             // 
             // label1
@@ -96,6 +97,16 @@
             ButtonColors.UseVisualStyleBackColor = true;
             ButtonColors.Click += ButtonColors_Click;
             // 
+            // ButtonSizes
+            // 
+            ButtonSizes.Location = new Point(262, 249);
+            ButtonSizes.Name = "ButtonSizes";
+            ButtonSizes.Size = new Size(84, 46);
+            ButtonSizes.TabIndex = 0;
+            ButtonSizes.Text = "Sizes";
+            ButtonSizes.UseVisualStyleBackColor = true;
+            ButtonSizes.Click += ButtonSizes_Click;
+            // 
             // MenuPrincipal
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
@@ -103,6 +114,7 @@
             ClientSize = new Size(621, 320);
             Controls.Add(ButtonColors);
             Controls.Add(ButtonSports);
+            Controls.Add(ButtonSizes);
             Controls.Add(ButtonShoes);
             Controls.Add(ButtonGenres);
             Controls.Add(ButtonBrands);
@@ -124,5 +136,6 @@
         private Button ButtonShoes;
         private Button ButtonSports;
         private Button ButtonColors;
+        private Button ButtonSizes;
     }
 }

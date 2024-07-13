@@ -192,6 +192,7 @@ namespace MpDeportes.TP1.Datos.Repositorios
                 .Include(s => s.Sport)
                 .Include(s => s.Genre)
                 .Include(s => s.Color)
+                .Include(s => s.ShoesSizes)
                 .AsNoTracking();
 
             if (brand != null)
@@ -253,6 +254,7 @@ namespace MpDeportes.TP1.Datos.Repositorios
             .Include(s => s.Genre)
             .Include(s => s.Sport)
             .Include(s => s.Brand)
+            .Include(s => s.ShoesSizes)
             .AsNoTracking();
 
             if (orden != null)
@@ -290,7 +292,8 @@ namespace MpDeportes.TP1.Datos.Repositorios
                     Genre = s.Genre?.GenreName ?? "",
                     Sport = s.Sport?.SportName ?? "",
                     Brand = s.Brand?.BrandName ?? "",
-                    Price = s.Price
+                    Price = s.Price,
+                    Cantidad = s.ShoesSizes.Count()
                 })
                 .ToList();
 
@@ -375,7 +378,8 @@ namespace MpDeportes.TP1.Datos.Repositorios
                     Color = shoe.Color?.ColorName ?? "", 
                     Model = shoe.Model,
                     Description = shoe.Description,
-                    Price = shoe.Price
+                    Price = shoe.Price,
+                    Cantidad = shoe.ShoesSizes.Count()
                 };
 
                 listaDto.Add(dto);
