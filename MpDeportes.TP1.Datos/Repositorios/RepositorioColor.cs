@@ -43,7 +43,8 @@ namespace MpDeportes.TP1.Datos.Repositorios
         {
             if (color.ColorId == 0)
             {
-                return _context.Colors.Any(s => s.ColorId == color.ColorId);
+                //return _context.Colors.Any(s => s.ColorId == color.ColorId);
+                return _context.Colors.Any(s => s.ColorName == color.ColorName);
             }
             return _context.Colors.Any(s => s.ColorName == color.ColorName &&
                     s.ColorId != color.ColorId);

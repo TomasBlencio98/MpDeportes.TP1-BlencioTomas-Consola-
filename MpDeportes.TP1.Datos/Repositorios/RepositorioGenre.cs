@@ -41,7 +41,8 @@ namespace MpDeportes.TP1.Datos.Repositorios
         {
             if (genre.GenreId == 0)
             {
-                return _context.Genres.Any(s => s.GenreId == genre.GenreId);
+                //return _context.Genres.Any(s => s.GenreId == genre.GenreId);
+                return _context.Genres.Any(s => s.GenreName == genre.GenreName);
             }
             return _context.Genres.Any(s => s.GenreName == genre.GenreName &&
                     s.GenreId != genre.GenreId);

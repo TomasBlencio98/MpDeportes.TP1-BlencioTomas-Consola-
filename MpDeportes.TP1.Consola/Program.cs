@@ -1516,15 +1516,37 @@ internal class Program
         shoe.Description = ConsoleExtensions.ReadString("Ingrese el nuevo Descripcion: ");
         shoe.Price = ConsoleExtensions.ReadDecimal("Ingrese el nuevo Price: ");
 
-        try
+        //falta preguntar si existe.
+
+        if (servicio != null)
         {
-            servicio?.Guardar(shoe);
-            Console.WriteLine("Registro editado correctamente!!!!");
+            if (!servicio.Existe(shoe))
+            {
+                servicio.Guardar(shoe);
+                Console.WriteLine("Shoe editado correctamente!!!");
+            }
+            else
+            {
+                Console.WriteLine("Registro Duplicado!!!");
+            }
         }
-        catch (Exception)
+        else
         {
-            Console.WriteLine("Error!");
+            Console.WriteLine("Error: El servicio de plantas es nulo.");
         }
+        Console.ReadLine();
+
+
+
+        //try
+        //{
+        //    servicio?.Guardar(shoe);
+        //    Console.WriteLine("Registro editado correctamente!!!!");
+        //}
+        //catch (Exception)
+        //{
+        //    Console.WriteLine("Error!");
+        //}
     }
 
     private static void BorrarUnShoes()
@@ -1559,6 +1581,7 @@ internal class Program
         {
             Console.WriteLine(ex.Message); ;
         }
+        Console.ReadLine();
     }
 
     private static void AgregarUnShoes()

@@ -42,7 +42,8 @@ namespace MpDeportes.TP1.Datos.Repositorios
         {
             if (brand.BrandId==0)
             {
-                return _context.Brands.Any(b => b.BrandId == brand.BrandId);
+                //return _context.Brands.Any(b => b.BrandId == brand.BrandId);
+                return _context.Brands.Any(b => b.BrandName == brand.BrandName);
             }
             return _context.Brands.Any(b => b.BrandName == brand.BrandName && 
                     b.BrandId != brand.BrandId);
