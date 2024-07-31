@@ -34,7 +34,7 @@
             TsButtonBorrar = new ToolStripButton();
             TsButtonEditar = new ToolStripButton();
             toolStripSeparator1 = new ToolStripSeparator();
-            TsButtonFiltrar = new ToolStripButton();
+            TsButtonShoeSize = new ToolStripButton();
             TsButtonActualizar = new ToolStripButton();
             toolStripSeparator2 = new ToolStripSeparator();
             DropDownButtonOrdenar = new ToolStripDropDownButton();
@@ -44,6 +44,12 @@
             mayorAMenorToolStripMenuItem = new ToolStripMenuItem();
             splitContainer1 = new SplitContainer();
             dgvDatos = new DataGridView();
+            ColumnaBrand = new DataGridViewTextBoxColumn();
+            ColumnaGenre = new DataGridViewTextBoxColumn();
+            ColumnaColor = new DataGridViewTextBoxColumn();
+            ColumnaSport = new DataGridViewTextBoxColumn();
+            ColumnaPrice = new DataGridViewTextBoxColumn();
+            ColumnSize = new DataGridViewTextBoxColumn();
             ComboBoxPaginas = new ComboBox();
             TextBoxCantRegistros = new TextBox();
             label3 = new Label();
@@ -54,12 +60,7 @@
             TxbCantRegistros = new TextBox();
             label2 = new Label();
             label1 = new Label();
-            ColumnaBrand = new DataGridViewTextBoxColumn();
-            ColumnaGenre = new DataGridViewTextBoxColumn();
-            ColumnaColor = new DataGridViewTextBoxColumn();
-            ColumnaSport = new DataGridViewTextBoxColumn();
-            ColumnaPrice = new DataGridViewTextBoxColumn();
-            ColumnaCant = new DataGridViewTextBoxColumn();
+            TsbButtonAsignarTalle = new ToolStripButton();
             toolStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)splitContainer1).BeginInit();
             splitContainer1.Panel1.SuspendLayout();
@@ -70,7 +71,7 @@
             // 
             // toolStrip1
             // 
-            toolStrip1.Items.AddRange(new ToolStripItem[] { ToolButtonNuevo, TsButtonBorrar, TsButtonEditar, toolStripSeparator1, TsButtonFiltrar, TsButtonActualizar, toolStripSeparator2, DropDownButtonOrdenar });
+            toolStrip1.Items.AddRange(new ToolStripItem[] { ToolButtonNuevo, TsButtonBorrar, TsButtonEditar, toolStripSeparator1, TsButtonShoeSize, TsButtonActualizar, toolStripSeparator2, DropDownButtonOrdenar, TsbButtonAsignarTalle });
             toolStrip1.Location = new Point(0, 0);
             toolStrip1.Name = "toolStrip1";
             toolStrip1.Size = new Size(680, 70);
@@ -115,15 +116,16 @@
             toolStripSeparator1.Name = "toolStripSeparator1";
             toolStripSeparator1.Size = new Size(6, 70);
             // 
-            // TsButtonFiltrar
+            // TsButtonShoeSize
             // 
-            TsButtonFiltrar.Image = (Image)resources.GetObject("TsButtonFiltrar.Image");
-            TsButtonFiltrar.ImageScaling = ToolStripItemImageScaling.None;
-            TsButtonFiltrar.ImageTransparentColor = Color.Magenta;
-            TsButtonFiltrar.Name = "TsButtonFiltrar";
-            TsButtonFiltrar.Size = new Size(52, 67);
-            TsButtonFiltrar.Text = "Filtrar";
-            TsButtonFiltrar.TextImageRelation = TextImageRelation.ImageAboveText;
+            TsButtonShoeSize.Image = (Image)resources.GetObject("TsButtonShoeSize.Image");
+            TsButtonShoeSize.ImageScaling = ToolStripItemImageScaling.None;
+            TsButtonShoeSize.ImageTransparentColor = Color.Magenta;
+            TsButtonShoeSize.Name = "TsButtonShoeSize";
+            TsButtonShoeSize.Size = new Size(67, 67);
+            TsButtonShoeSize.Text = "ShoesSizes";
+            TsButtonShoeSize.TextImageRelation = TextImageRelation.ImageAboveText;
+            TsButtonShoeSize.Click += TsButtonShoeSize_Click;
             // 
             // TsButtonActualizar
             // 
@@ -212,7 +214,7 @@
             dgvDatos.AllowUserToAddRows = false;
             dgvDatos.AllowUserToDeleteRows = false;
             dgvDatos.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dgvDatos.Columns.AddRange(new DataGridViewColumn[] { ColumnaBrand, ColumnaGenre, ColumnaColor, ColumnaSport, ColumnaPrice, ColumnaCant });
+            dgvDatos.Columns.AddRange(new DataGridViewColumn[] { ColumnaBrand, ColumnaGenre, ColumnaColor, ColumnaSport, ColumnaPrice, ColumnSize });
             dgvDatos.Dock = DockStyle.Fill;
             dgvDatos.Location = new Point(0, 0);
             dgvDatos.MultiSelect = false;
@@ -221,6 +223,48 @@
             dgvDatos.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
             dgvDatos.Size = new Size(680, 194);
             dgvDatos.TabIndex = 0;
+            // 
+            // ColumnaBrand
+            // 
+            ColumnaBrand.AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
+            ColumnaBrand.HeaderText = "Brands";
+            ColumnaBrand.Name = "ColumnaBrand";
+            ColumnaBrand.ReadOnly = true;
+            // 
+            // ColumnaGenre
+            // 
+            ColumnaGenre.AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
+            ColumnaGenre.HeaderText = "Genres";
+            ColumnaGenre.Name = "ColumnaGenre";
+            ColumnaGenre.ReadOnly = true;
+            // 
+            // ColumnaColor
+            // 
+            ColumnaColor.AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
+            ColumnaColor.HeaderText = "Colors";
+            ColumnaColor.Name = "ColumnaColor";
+            ColumnaColor.ReadOnly = true;
+            // 
+            // ColumnaSport
+            // 
+            ColumnaSport.AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
+            ColumnaSport.HeaderText = "Sports";
+            ColumnaSport.Name = "ColumnaSport";
+            ColumnaSport.ReadOnly = true;
+            // 
+            // ColumnaPrice
+            // 
+            ColumnaPrice.AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
+            ColumnaPrice.HeaderText = "Prices";
+            ColumnaPrice.Name = "ColumnaPrice";
+            ColumnaPrice.ReadOnly = true;
+            // 
+            // ColumnSize
+            // 
+            ColumnSize.HeaderText = "Size";
+            ColumnSize.Name = "ColumnSize";
+            ColumnSize.ReadOnly = true;
+            ColumnSize.Visible = false;
             // 
             // ComboBoxPaginas
             // 
@@ -318,47 +362,16 @@
             label1.TabIndex = 0;
             label1.Text = "Pagina: ";
             // 
-            // ColumnaBrand
+            // TsbButtonAsignarTalle
             // 
-            ColumnaBrand.AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
-            ColumnaBrand.HeaderText = "Brands";
-            ColumnaBrand.Name = "ColumnaBrand";
-            ColumnaBrand.ReadOnly = true;
-            // 
-            // ColumnaGenre
-            // 
-            ColumnaGenre.AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
-            ColumnaGenre.HeaderText = "Genres";
-            ColumnaGenre.Name = "ColumnaGenre";
-            ColumnaGenre.ReadOnly = true;
-            // 
-            // ColumnaColor
-            // 
-            ColumnaColor.AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
-            ColumnaColor.HeaderText = "Colors";
-            ColumnaColor.Name = "ColumnaColor";
-            ColumnaColor.ReadOnly = true;
-            // 
-            // ColumnaSport
-            // 
-            ColumnaSport.AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
-            ColumnaSport.HeaderText = "Sports";
-            ColumnaSport.Name = "ColumnaSport";
-            ColumnaSport.ReadOnly = true;
-            // 
-            // ColumnaPrice
-            // 
-            ColumnaPrice.AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
-            ColumnaPrice.HeaderText = "Prices";
-            ColumnaPrice.Name = "ColumnaPrice";
-            ColumnaPrice.ReadOnly = true;
-            // 
-            // ColumnaCant
-            // 
-            ColumnaCant.AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
-            ColumnaCant.HeaderText = "Cantidad";
-            ColumnaCant.Name = "ColumnaCant";
-            ColumnaCant.ReadOnly = true;
+            TsbButtonAsignarTalle.Image = (Image)resources.GetObject("TsbButtonAsignarTalle.Image");
+            TsbButtonAsignarTalle.ImageScaling = ToolStripItemImageScaling.None;
+            TsbButtonAsignarTalle.ImageTransparentColor = Color.Magenta;
+            TsbButtonAsignarTalle.Name = "TsbButtonAsignarTalle";
+            TsbButtonAsignarTalle.Size = new Size(77, 67);
+            TsbButtonAsignarTalle.Text = "Asignar Talle";
+            TsbButtonAsignarTalle.TextImageRelation = TextImageRelation.ImageAboveText;
+            TsbButtonAsignarTalle.Click += TsbButtonAsignarTalle_Click;
             // 
             // FrmShoes
             // 
@@ -394,7 +407,7 @@
         private ToolStripButton TsButtonBorrar;
         private ToolStripButton TsButtonEditar;
         private ToolStripSeparator toolStripSeparator1;
-        private ToolStripButton TsButtonFiltrar;
+        private ToolStripButton TsButtonShoeSize;
         private ToolStripButton TsButtonActualizar;
         private ToolStripSeparator toolStripSeparator2;
         private ToolStripDropDownButton DropDownButtonOrdenar;
@@ -417,6 +430,7 @@
         private DataGridViewTextBoxColumn ColumnaColor;
         private DataGridViewTextBoxColumn ColumnaSport;
         private DataGridViewTextBoxColumn ColumnaPrice;
-        private DataGridViewTextBoxColumn ColumnaCant;
+        private DataGridViewTextBoxColumn ColumnSize;
+        private ToolStripButton TsbButtonAsignarTalle;
     }
 }

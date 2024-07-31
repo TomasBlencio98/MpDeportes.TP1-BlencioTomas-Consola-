@@ -42,6 +42,7 @@ namespace MpDeportes.TP1.Datos.Interfaces
         List<Size> GetTallesPorZapato(int shoeId);
         List<Shoe> GetZapatosPorTalle(int sizeId);
         void ActualizarShoeSize(ShoeSize shoeSize);
-        List<ShoeSize> GetShoesConTalles();
+        List<ShoeListDto> GetShoesConTalles();
+        List<ShoeListDto> ConvertToShoeListDto(List<ShoeSize> shoeSizes);
     }
 }

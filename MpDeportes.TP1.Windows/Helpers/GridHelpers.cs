@@ -55,7 +55,7 @@ namespace MpDeportes.TP1.Windows.Helpers
                     r.Cells[2].Value = shoeDto.Color;
                     r.Cells[3].Value = shoeDto.Sport;
                     r.Cells[4].Value = shoeDto.Price.ToString("C");
-                    r.Cells[5].Value = shoeDto.Cantidad;
+                    r.Cells[5].Value = shoeDto.Size;
                     break;
                 default:
                     break;

@@ -34,6 +34,6 @@ namespace MpDeportes.TP1.Servicios.Interfaces
         List<Size> GetTallesPorZapato(int shoeId);
         List<Shoe> GetZapatosPorTalle(int sizeId);
         int GetStockShoeSize(Shoe shoe, Size size);
-        List<ShoeSize> GetShoesConTalles();
+        List<ShoeListDto> GetShoesConTalles();
     }
 }

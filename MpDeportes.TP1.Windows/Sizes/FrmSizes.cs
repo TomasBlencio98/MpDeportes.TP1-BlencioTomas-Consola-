@@ -174,6 +174,10 @@ namespace MpDeportes.TP1.Windows.Sizes
             listaShoes = _servicio.GetShoes(sizeEnDB);
             if (listaShoes == null) return;
             listaShoesDto = _servicioShoe.PasarListaDto(listaShoes);
+            foreach (var item in listaShoesDto)
+            {
+                item.Size = size.SizeNumber;
+            }
             FrmMostrarShoes frm = new FrmMostrarShoes();
             frm.SetLista(listaShoesDto);
             frm.ShowDialog(this);

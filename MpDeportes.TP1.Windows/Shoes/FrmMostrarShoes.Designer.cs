@@ -37,6 +37,7 @@
             ColumnaPrice = new DataGridViewTextBoxColumn();
             label1 = new Label();
             TextBoxCantidadShoes = new TextBox();
+            ColumnSize = new DataGridViewTextBoxColumn();
             panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)dgvDatos).BeginInit();
             SuspendLayout();
@@ -54,7 +55,7 @@
             dgvDatos.AllowUserToAddRows = false;
             dgvDatos.AllowUserToDeleteRows = false;
             dgvDatos.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dgvDatos.Columns.AddRange(new DataGridViewColumn[] { ColumnaBrand, ColumnaGenre, ColumnaColor, ColumnaSport, ColumnaPrice });
+            dgvDatos.Columns.AddRange(new DataGridViewColumn[] { ColumnaBrand, ColumnaGenre, ColumnaColor, ColumnaSport, ColumnaPrice, ColumnSize });
             dgvDatos.Dock = DockStyle.Fill;
             dgvDatos.Location = new Point(0, 0);
             dgvDatos.Name = "dgvDatos";
@@ -116,6 +117,12 @@
             TextBoxCantidadShoes.Size = new Size(55, 29);
             TextBoxCantidadShoes.TabIndex = 2;
             // 
+            // ColumnSize
+            // 
+            ColumnSize.HeaderText = "Size";
+            ColumnSize.Name = "ColumnSize";
+            ColumnSize.ReadOnly = true;
+            // 
             // FrmMostrarShoes
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
@@ -140,12 +147,13 @@
 
         private Panel panel1;
         private DataGridView dgvDatos;
+        private Label label1;
+        private TextBox TextBoxCantidadShoes;
         private DataGridViewTextBoxColumn ColumnaBrand;
         private DataGridViewTextBoxColumn ColumnaGenre;
         private DataGridViewTextBoxColumn ColumnaColor;
         private DataGridViewTextBoxColumn ColumnaSport;
         private DataGridViewTextBoxColumn ColumnaPrice;
-        private Label label1;
-        private TextBox TextBoxCantidadShoes;
+        private DataGridViewTextBoxColumn ColumnSize;
     }
 }

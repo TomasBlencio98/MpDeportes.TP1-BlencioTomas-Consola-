@@ -146,7 +146,7 @@ namespace MpDeportes.TP1.Servicios.Servicios
             }
         }
 
-        public List<ShoeSize> GetShoesConTalles()
+        public List<ShoeListDto> GetShoesConTalles()
         {
             return _repository.GetShoesConTalles();
         }

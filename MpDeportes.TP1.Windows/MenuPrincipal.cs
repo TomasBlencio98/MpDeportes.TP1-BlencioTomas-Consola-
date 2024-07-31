@@ -87,13 +87,21 @@ namespace MpDeportes.TP1.Windows
         {
             var servicioShoes = _serviceProvider
                .GetService<IServicioShoe>();
+            var servicioSize = _serviceProvider
+               .GetService<IServicioSize>();
             if (servicioShoes == null)
             {
                 MessageBox.Show("El servicio no está registrado o no se pudo resolver."
                     , "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
-            FrmShoes frm = new FrmShoes(servicioShoes, _serviceProvider);
+            if (servicioSize == null)
+            {
+                MessageBox.Show("El servicio no está registrado o no se pudo resolver."
+                    , "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+            FrmShoes frm = new FrmShoes(servicioShoes, _serviceProvider,servicioSize);
             frm.ShowDialog();
         }
 

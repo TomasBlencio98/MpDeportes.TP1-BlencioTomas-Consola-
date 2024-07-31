@@ -72,6 +72,19 @@ namespace MpDeportes.TP1.Datos.Repositorios
             _context.Shoes.Remove(shoe);
         }
 
+        public List<ShoeListDto> ConvertToShoeListDto(List<ShoeSize> shoeSizes)
+        {
+            return shoeSizes.Select(ss => new ShoeListDto
+            {
+                ShoeId = ss.ShoeId,
+                Brand = ss.Shoe.Brand?.BrandName ?? "N/A",
+                Genre = ss.Shoe.Genre?.GenreName ?? "N/A",
+                Color = ss.Shoe.Color?.ColorName ?? "N/A",
+                Sport = ss.Shoe.Sport?.SportName ?? "N/A",
+                Size = ss.Size.SizeNumber
+            }).ToList();
+        }
+
         public void Editar(Shoe shoe)
         {
             var brandExistenteBd = _context.Brands.
@@ -221,10 +234,10 @@ namespace MpDeportes.TP1.Datos.Repositorios
                 switch (orden)
                 {
                     case Orden.AZ:
-                        query = query.OrderBy(s => s.Model);
+                        query = query.OrderBy(s => s.Brand);
                         break;
                     case Orden.ZA:
-                        query = query.OrderByDescending(s => s.Model);
+                        query = query.OrderByDescending(s => s.Brand);
                         break;
                     case Orden.MenorPrecio:
                         query = query.OrderBy(s => s.Price);
@@ -243,7 +256,7 @@ namespace MpDeportes.TP1.Datos.Repositorios
                     .Where(s => s.Price <= maximo)
                     .Where(s => s.Price >= minimo);
             }
-
+            
             return query.ToList();
         }
 
@@ -310,14 +323,15 @@ namespace MpDeportes.TP1.Datos.Repositorios
                 .FirstOrDefault(s => s.ShoeId == id);
         }
 
-        public List<ShoeSize> GetShoesConTalles()
+        public List<ShoeListDto> GetShoesConTalles()
         {
-            return _context.ShoesSizes
+            var shoeSizes=_context.ShoesSizes
                    .Include(ss => ss.Shoe).ThenInclude(s => s.Brand)
                    .Include(ss => ss.Shoe).ThenInclude(s => s.Sport)
                    .Include(ss => ss.Shoe).ThenInclude(s => s.Genre)
                    .Include(ss => ss.Shoe).ThenInclude(s => s.Color)
                    .Include(ss => ss.Size).ToList();
+            return ConvertToShoeListDto(shoeSizes);
         }
 
         public ShoeSize? GetShoeSize(Shoe shoe, Size size)

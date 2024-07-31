@@ -3,6 +3,7 @@ using MpDeportes.TP1.Entidades;
 using MpDeportes.TP1.Servicios.Interfaces;
 using MpDeportes.TP1.Windows.Helpers;
 using MpDeportes.TP1.Entidades.Enums;
+using Size = MpDeportes.TP1.Entidades.Size;
 
 namespace MpDeportes.TP1.Windows.Shoes
 {
@@ -10,6 +11,7 @@ namespace MpDeportes.TP1.Windows.Shoes
     {
         private readonly IServiceProvider _serviceProvider;
         private readonly IServicioShoe _servicio;
+        private readonly IServicioSize _servicioSize;
         private List<ShoeListDto>? lista;
         private Orden orden = Orden.SinOrden;
 
@@ -20,16 +22,18 @@ namespace MpDeportes.TP1.Windows.Shoes
         private bool FilterOn = false;
 
         private int pageCount;
-        private int pageSize = 2;
+        private int pageSize = 5;
         private int pageNum = 0;
         private int recordCount;
 
         public FrmShoes(IServicioShoe servicioShoe,
-            IServiceProvider serviceProvider)
+            IServiceProvider serviceProvider,
+            IServicioSize servicioSize)
         {
             InitializeComponent();
             _servicio = servicioShoe;
             _serviceProvider = serviceProvider;
+            _servicioSize = servicioSize;
         }
 
         private void FrmShoes_Load(object sender, EventArgs e)
@@ -240,7 +244,7 @@ namespace MpDeportes.TP1.Windows.Shoes
             ToolButtonNuevo.Enabled = false;
             TsButtonBorrar.Enabled = false;
             TsButtonEditar.Enabled = false;
-            TsButtonFiltrar.Enabled = false;
+            TsButtonShoeSize.Enabled = false;
             ComboBoxPaginas.Enabled = true;
             TextBoxCantRegistros.Enabled = false;
             ButtonPrimero.Enabled = false;
@@ -285,13 +289,55 @@ namespace MpDeportes.TP1.Windows.Shoes
             ToolButtonNuevo.Enabled = true;
             TsButtonBorrar.Enabled = true;
             TsButtonEditar.Enabled = true;
-            TsButtonFiltrar.Enabled = true;
+            TsButtonShoeSize.Enabled = true;
             ComboBoxPaginas.Enabled = true;
             TextBoxCantRegistros.Enabled = true;
             ButtonPrimero.Enabled = true;
             ButtonAnterior.Enabled = true;
             ButtonSiguiente.Enabled = true;
             ButtonUltimo.Enabled = true;
+        }
+
+        private void TsButtonShoeSize_Click(object sender, EventArgs e)
+        {
+            var listaSHOESIZE = _servicio.GetShoesConTalles();
+            FrmMostrarShoes frm = new FrmMostrarShoes();
+            frm.SetLista(listaSHOESIZE);
+            frm.ShowDialog();
+
+        }
+
+        private void TsbButtonAsignarTalle_Click(object sender, EventArgs e)
+        {
+            if (dgvDatos.SelectedRows.Count == 0) { return; }
+            var r = dgvDatos.SelectedRows[0];
+            ShoeListDto? shoeDto = r.Tag as ShoeListDto;
+            if (shoeDto == null) return;
+            Shoe? shoe = _servicio.GetShoePorId(shoeDto.ShoeId);
+            FrmAsignarTalle frm = new FrmAsignarTalle(_serviceProvider,_servicio)
+            { Text = "Asiganar talle a Shoe" };
+            frm.SetShoe(shoe);
+            DialogResult dr = frm.ShowDialog(this);
+            try
+            {
+                var shoeSize = frm.GetShoe();
+                int stock = frm.GetStock();
+                if (shoe == null) return;
+                shoe.ShoeId = shoeSize.ShoeId;
+                var sizeId = shoeSize.SizeId;
+                Size size=_servicioSize.GetSizesPorId(sizeId);
+                _servicio.AsignarTalleAZapato(shoe, size, stock);
+                MessageBox.Show("Relacion creada correctamente", "Informacion",
+                        MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+            }
+            catch (Exception ex)
+            {
+
+                MessageBox.Show(ex.Message, "Error",
+                        MessageBoxButtons.OK, MessageBoxIcon.Error);
+
+            }
         }
     }
 }

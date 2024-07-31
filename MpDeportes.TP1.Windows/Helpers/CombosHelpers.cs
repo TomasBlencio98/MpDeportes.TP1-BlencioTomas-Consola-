@@ -7,11 +7,26 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Color = MpDeportes.TP1.Entidades.Color;
+using Size = MpDeportes.TP1.Entidades.Size;
 
 namespace MpDeportes.TP1.Windows.Helpers
 {
     public static class CombosHelpers
     {
+        public static void CargarComboSizes(IServiceProvider serviceProvider, ref ComboBox cbo)
+        {
+            var servicio = serviceProvider.GetService<IServicioSize>();
+            var lista = servicio?.GetLista();
+            var defaultSize = new Size
+            {
+                SizeNumber = 0
+            };
+            lista?.Insert(0, defaultSize);
+            cbo.DataSource = lista;
+            cbo.DisplayMember = "SizeNumber";
+            cbo.ValueMember = "SizeId";
+            cbo.SelectedIndex = 0;
+        }
         public static void CargarComboBrands(IServiceProvider serviceProvider, ref ComboBox cbo)
         {
             var servicio = serviceProvider.GetService<IServicioBrand>();

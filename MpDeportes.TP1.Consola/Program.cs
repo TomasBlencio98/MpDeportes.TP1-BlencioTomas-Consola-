@@ -98,7 +98,7 @@ internal class Program
                     break;
                 case "43":
                     Console.Clear();
-                    EditarTalleAlZapato();
+                    //EditarTalleAlZapato();
                     break;
                 case "41":
                     Console.Clear();
@@ -251,7 +251,7 @@ internal class Program
         var zapatosConTalles = zapatosService?.GetShoesConTalles();
         if (zapatosConTalles?.Count>0)
         {
-            MostrarShoesConTalles(zapatosConTalles);
+            //MostrarShoesConTalles(zapatosConTalles);
         }
         else
         {
@@ -260,50 +260,50 @@ internal class Program
         
     }
 
-    private static void EditarTalleAlZapato()
-    {
-        Console.Clear();
-        var zapatosService = servicioProvider?.GetService<IServicioShoe>();
-        var tallesService = servicioProvider?.GetService<IServicioSize>();
-        if (zapatosService == null || tallesService == null) return;
+    //private static void EditarTalleAlZapato()
+    //{
+    //    Console.Clear();
+    //    var zapatosService = servicioProvider?.GetService<IServicioShoe>();
+    //    var tallesService = servicioProvider?.GetService<IServicioSize>();
+    //    if (zapatosService == null || tallesService == null) return;
 
-        var zapatosConTalles = zapatosService.GetShoesConTalles();
+    //    var zapatosConTalles = zapatosService.GetShoesConTalles();
 
-        if (zapatosConTalles?.Count > 0)
-        {
-            MostrarShoesConTalles(zapatosConTalles);
-            var idZapatoTalleEditar = ConsoleExtensions.ReadInt("Ingrese el ID del zapato-talle a editar: ");
-            var zapatoTalleEnDB = zapatosConTalles.FirstOrDefault(z => z.ShoeSizeId == idZapatoTalleEditar);
+    //    if (zapatosConTalles?.Count > 0)
+    //    {
+    //        //MostrarShoesConTalles(zapatosConTalles);
+    //        var idZapatoTalleEditar = ConsoleExtensions.ReadInt("Ingrese el ID del zapato-talle a editar: ");
+    //        var zapatoTalleEnDB = zapatosConTalles.FirstOrDefault(z => z.ShoeSizeId == idZapatoTalleEditar);
 
-            if (zapatoTalleEnDB != null)
-            {
-                Console.WriteLine("Listado de talles disponibles...");
-                Console.WriteLine();
-                ListarTalles();
-                var talleEnDB = zapatoTalleEnDB.Size;
-                Console.WriteLine($"Talle anterior: {talleEnDB.SizeNumber}.");
-                var idTalleNuevo = ConsoleExtensions.ReadInt("Ingrese el id del nuevo talle: ");
-                var nuevoTalle = tallesService.GetSizesPorId(idTalleNuevo);
-                if (nuevoTalle == null) return;
-                talleEnDB.SizeNumber = nuevoTalle.SizeNumber;
-                Console.WriteLine($"Talle nuevo: {talleEnDB.SizeNumber} para el zapato {zapatoTalleEnDB.ShoeId}");
+    //        if (zapatoTalleEnDB != null)
+    //        {
+    //            Console.WriteLine("Listado de talles disponibles...");
+    //            Console.WriteLine();
+    //            ListarTalles();
+    //            var talleEnDB = zapatoTalleEnDB.Size;
+    //            Console.WriteLine($"Talle anterior: {talleEnDB.SizeNumber}.");
+    //            var idTalleNuevo = ConsoleExtensions.ReadInt("Ingrese el id del nuevo talle: ");
+    //            var nuevoTalle = tallesService.GetSizesPorId(idTalleNuevo);
+    //            if (nuevoTalle == null) return;
+    //            talleEnDB.SizeNumber = nuevoTalle.SizeNumber;
+    //            Console.WriteLine($"Talle nuevo: {talleEnDB.SizeNumber} para el zapato {zapatoTalleEnDB.ShoeId}");
 
-                zapatosService.AsignarTalleAZapato(zapatoTalleEnDB.Shoe,
-                    nuevoTalle, zapatoTalleEnDB.QuantityInStock);
-                Console.WriteLine("Talle editado!!!");
-            }
-            else
-            {
-                Console.WriteLine("Zapato-talle inexistente!!!");
-            }
-        }
-        else
-        {
-            Console.WriteLine("No hay zapatos con talles asignados.");
-        }
+    //            zapatosService.AsignarTalleAZapato(zapatoTalleEnDB.Shoe,
+    //                nuevoTalle, zapatoTalleEnDB.QuantityInStock);
+    //            Console.WriteLine("Talle editado!!!");
+    //        }
+    //        else
+    //        {
+    //            Console.WriteLine("Zapato-talle inexistente!!!");
+    //        }
+    //    }
+    //    else
+    //    {
+    //        Console.WriteLine("No hay zapatos con talles asignados.");
+    //    }
 
-        Console.ReadLine();
-    } //NO LOGRADO :(
+    //    Console.ReadLine();
+    //} //NO LOGRADO :(
 
     private static void MostrarShoesConTalles(List<ShoeSize> zapatosConTalles)
     {
